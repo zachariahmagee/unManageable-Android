@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">unManageable</string>
+    <string name="readingsAsset">readings.json</string>
+</resources>
