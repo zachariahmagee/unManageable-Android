@@ -13,17 +13,21 @@ import androidx.compose.material.icons.filled.Cancel
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.livedata.observeAsState
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import zm.wcc.unmanageable.feature.readings.presentation.ui.getAllReadingCategories
 import zm.wcc.unmanageable.feature.readings.presentation.viewmodel.ReadingsViewModel
 import zm.wcc.unmanageable.ui.theme.getColors
 import zm.wcc.unmanageable.ui.theme.matte_black
+import zm.wcc.unmanageable.ui.theme.milk_white
 
 
 @OptIn(ExperimentalComposeUiApi::class)
@@ -38,13 +42,12 @@ fun MainScreen(navController: NavController, viewModel: ReadingsViewModel) {
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .background(color = MaterialTheme.colors.background)
+            .background(color = matte_black)
     ) {
         Surface(
             modifier = Modifier
                 .fillMaxWidth(),
-            color = MaterialTheme.colors.primary,
-            elevation = 8.dp,
+            color = matte_black,
         ) {
             Column() {
                 Row(
@@ -57,7 +60,10 @@ fun MainScreen(navController: NavController, viewModel: ReadingsViewModel) {
                         onValueChange = { searchTerm ->
                             viewModel.onQueryChanged(searchTerm)
                         },
-                        label = { Text(text = "Search") },
+                        textStyle = TextStyle(color = milk_white, fontSize = 20.sp),
+                        label = { Text(text = "Search",
+                                       color = milk_white,
+                                       fontSize = 12.sp) },
                         keyboardOptions = KeyboardOptions(
                             keyboardType = KeyboardType.Text,
                             imeAction = ImeAction.Search
@@ -104,8 +110,6 @@ fun MainScreen(navController: NavController, viewModel: ReadingsViewModel) {
                 }
             }
         }
-
-
         Spacer(modifier = Modifier.padding(8.dp))
         LazyColumn(
             modifier = Modifier

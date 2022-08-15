@@ -37,10 +37,12 @@ fun ReadingDataItem(
     val spacing = 16.dp
     val scroll = rememberScrollState()
     Card(
-        shape = RoundedCornerShape(4.dp),
+        shape = RoundedCornerShape(16.dp),
         backgroundColor = color,
+        elevation = 8.dp,
         modifier = Modifier
             .padding(16.dp)
+            .border(BorderStroke(2.dp, black), shape = RoundedCornerShape(16.dp))
             .clickable(
                 onClick = {
                     navController.navigate(Screen.DetailScreen.withArgs(title, reading))
@@ -54,7 +56,7 @@ fun ReadingDataItem(
         ) {
             Text(
                 text = readingDataItem.title,
-                modifier = Modifier.padding(8.dp),
+                modifier = Modifier.padding(8.dp, 6.dp),
                 textAlign = TextAlign.Start,
                 style = TextStyle(
                     color = milk_white,
@@ -62,15 +64,15 @@ fun ReadingDataItem(
                     fontWeight = FontWeight.Bold
                 )
             )
-            //Spacer(modifier = Modifier.padding(4.dp))
             Text(
                 text = readingDataItem.reading,
                 textAlign = TextAlign.Center,
                 modifier = Modifier
-                    .padding(8.dp)
-                    .height(100.dp)
+                    .padding(12.dp, 2.dp)
+                    .height(130.dp)
                     .verticalScroll(
-                        state = scroll),
+                        state = scroll
+                    ),
                 style = TextStyle(
                     color = milk_white,
                     fontSize = 16.sp
@@ -91,49 +93,60 @@ fun ReadingDataItemDetail(
     val displayMetrics = resources.displayMetrics
     // Compute the screen width using the actual display width and the density of the display.
     val screenWidth = displayMetrics.widthPixels / displayMetrics.density
-    val spacing = 16.dp
+    val spacing = 20.dp
     val scroll = rememberScrollState()
-    Card(
-        shape = RoundedCornerShape(4.dp),
-        backgroundColor = charcoal,
-        modifier = Modifier.padding(16.dp),
-        border = BorderStroke(
-            width = 8.dp,
-            color = matte_black,),
-        elevation = 4.dp,
-    ) {
-        Column(
-            modifier = Modifier.width(screenWidth.dp - (spacing * 2)),
-            verticalArrangement = Arrangement.Top,
-            horizontalAlignment = Alignment.Start
+    Column() {
+        Card(
+            shape = RoundedCornerShape(4.dp),
+            backgroundColor = charcoal,
+            modifier = Modifier.padding(16.dp),
+            border = BorderStroke(
+                width = 2.dp,
+                color = ucla_gold,),
+            elevation = 16.dp,
         ) {
-            if (title != null) {
-                Text(
-                    text = title,
-                    modifier = Modifier.padding(8.dp),
-                    textAlign = TextAlign.Start,
-                    style = TextStyle(
-                        color = milk_white,
-                        fontSize = 25.sp,
-                        fontWeight = FontWeight.Bold
+            Column(
+                modifier = Modifier.width(screenWidth.dp - (spacing * 2)),
+                verticalArrangement = Arrangement.Top,
+                horizontalAlignment = Alignment.Start
+            ) {
+                if (title != null) {
+                    Text(
+                        text = title,
+                        modifier = Modifier.padding(16.dp),
+                        textAlign = TextAlign.Start,
+                        style = TextStyle(
+                            color = milk_white,
+                            fontSize = 25.sp,
+                            fontWeight = FontWeight.Bold
+                        )
                     )
-                )
-            }
-            //Spacer(modifier = Modifier.padding(4.dp))
-            if (reading != null) {
-                Text(
-                    text = reading,
-                    textAlign = TextAlign.Center,
-                    modifier = Modifier
-                        .padding(16.dp, 8.dp)
-                        .verticalScroll(
-                            state = scroll),
-                    style = TextStyle(
-                        color = milk_white,
-                        fontSize = 20.sp
+                }
+                if (reading != null) {
+                    Text(
+                        text = reading,
+                        textAlign = TextAlign.Center,
+                        modifier = Modifier
+                            .padding(16.dp, 8.dp)
+                            .verticalScroll(
+                                state = scroll
+                            ),
+                        style = TextStyle(
+                            color = milk_white,
+                            fontSize = 20.sp
+                        )
                     )
-                )
+                }
             }
+        }
+        //Spacer(modifier = Modifier.padding(16.dp))
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(200.dp)
+                .verticalScroll(scroll),
+            horizontalArrangement = Arrangement.Center) {
+            InsigniaCanvas()
         }
     }
 }
