@@ -12,8 +12,13 @@
     <color name="ash">#c8c2b3</color>
     <color name="Milk_white">#dfdace</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="ucla_gold">#ffb300</color>
     <color name="flame_red">#852d2d</color>
+    <color name="orange">#d76000</color>
+    <color name="ucla_gold">#ffb300</color>
+    <color name="green">#207438</color>
+    <color name="forest">#054620</color>
     <color name="calypso">#2d7085</color>
     <color name="tropaz">#2d5385</color>
+    <color name="plum">#813c77</color>
+    <color name="tyrian">#67013e</color>
 </resources>
